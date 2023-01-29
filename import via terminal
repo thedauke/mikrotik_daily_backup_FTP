@@ -20,8 +20,8 @@ add interval=1d name=Daily_Backup on-event="# Get the router's identity & Date\
     \n# Upload the backup to the server\r\
     \n/tool fetch address=10.0.10.3 src-path=\"\$filename\" user=admin passwor\
     d=Kaznetcom12 mode=ftp dst-path=\"/\$filename\" upload=yes\r\
-    \n/tool fetch address=10.0.10.3 src-path=\"\$rscfilename\" user=admin pass\
-    word=Kaznetcom12 mode=ftp dst-path=\"/\$rscfilename\" upload=yes\r\
+    \n/tool fetch address=10.0.10.3 src-path=\"\$rscfilename\" user=yourlogin pass\
+    word=yourpassword mode=ftp dst-path=\"/\$rscfilename\" upload=yes\r\
     \n\r\
     \n# Log the backup upload\r\
     \n/log info message=\"\$date_Backup uploaded to server: backup_\$identity)\
