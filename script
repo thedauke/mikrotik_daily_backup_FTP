@@ -1,0 +1,25 @@
+# Get the router's identity & Date
+:local identity [/system identity get name]
+:local GDate [/system clock get date]
+:local Gtime [/system clock get time]
+:local date  "$GDate-$Gtime"
+
+# Create a backup file
+/system backup save dont-encrypt=yes name="backup_$identity"
+# Create a backup file rsc
+export file="backup_$identity.rsc"
+
+# Wait for the backup to complete
+:local filename "backup_$identity.backup"
+:local rscfilename "backup_$identity.rsc"
+:delay 5s
+
+
+# Upload the backup to the server
+/tool fetch address=<yourFTPip> src-path="$filename" user=<yourFTPlogin> password=<yourFTPpassword> mode=ftp dst-path="/$filename" upload=yes
+/tool fetch address=<yourFTPip> src-path="$rscfilename" user=<yourFTPlogin> password=<yourFTPpassword> mode=ftp dst-path="/$rscfilename" upload=yes
+
+# Log the backup upload
+/log info message="$date_Backup uploaded to server: backup_$identity)"
+
+#CC by TDADS
